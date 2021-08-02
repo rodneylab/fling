@@ -9,9 +9,11 @@ pub fn main() {
     let passphrase = "my_passphrase";
     let (public_key_pem, private_key_pem) = generate_rsa_public_key_pair(&passphrase[..]);
     let ciphertext = rsa_public_key_encrypt(public_key_pem);
-    let plaintext =
-        rsa_public_key_decrypt(ciphertext, private_key_pem, &passphrase[..]);
-    println!("Plaintext: {:?}", String::from(str::from_utf8(&plaintext).unwrap()));
+    let plaintext = rsa_public_key_decrypt(ciphertext, private_key_pem, &passphrase[..]);
+    println!(
+        "Plaintext: {:?}",
+        String::from(str::from_utf8(&plaintext).unwrap())
+    );
 }
 
 pub fn generate_rsa_public_key_pair(passphrase: &str) -> (Vec<u8>, Vec<u8>) {
